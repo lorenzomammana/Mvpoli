@@ -1,0 +1,168 @@
+(documentation 'is-monomial 'function)
+"True if M is a correct monomial '(m Coeff TD Varpowers)."
+
+(documentation 'is-varpower 'function)
+"True if VP is a correct varpower '(v Exp Sym)."
+
+(documentation 'is-polynomial 'function)
+"True if P is a correct polynomial '(poly ListMono)."
+
+(documentation 'mono-vars 'function)
+"Return the varpowers list of the monomial M.
+ M must be a parsed monomial"
+
+(documentation 'mono-coeff 'function)
+"Return the coefficient of the monomial M.
+ M must be a parsed monomial"
+
+(documentation 'mono-td 'function)
+"Return the total degree of the monomial M.
+ M must be a parsed monomial"
+
+(documentation 'monomial-total-degree 'function)
+"Deprecated - Same as mono-
+ Argument M A parsed monomial.t."
+
+(documentation 'monomial-vars-and-powers 'function)
+"Deprecated - same as mono-vars.
+ Argument M A parsed monomial."
+
+(documentation 'varpower-power 'function)
+"Return the power of the varpower VP."
+
+(documentation 'varpower-symbol 'function)
+"Return the symbol of the varpower VP."
+
+(documentation 'poly-monomials 'function)
+"Return the list of monomials in the polynomial P."
+
+(documentation 'as-monomial 'function)
+"Parse an EXPRESSION into the corresponding sorted monomial.
+ the EXPRESSION can be.
+ '(* [coeff] var-expt*) |
+ number |
+ '() "
+
+(documentation 'sort-monomials 'function)
+"Return a list that contains LISTMONO elements sorted using #'sort-monomial."
+
+(documentation 'sort-monomial 'function)
+"Sort the varpowers in MONO lexicographically
+ MONO is a parsed monomial"
+
+(documentation 'extract-coeff 'function)
+"Return 1 if COEFF is not a number, COEFF otherwise"
+
+(documentation 'extract-vars 'function)
+"Return a list of varpowers based on the given VARLIST.
+ VARLIST contains unparsed varpowers in the form [sym|(expt sym exp)]"
+
+(documentation 'calculate-total-degree 'function)
+"Return the total degree of VARLIST
+ VARLIST is a list containing varpowers (v exp sym)"
+
+(documentation 'simplify-vars 'function)
+"Return a list that contains VARLIST elements without coefficient 0
+ it also multiplies the same varpowers in the list
+ VARLIST is a list of varpowers (v exp sym)"
+
+(documentation 'mul-var 'function)
+"Multiply the same varpowers in VARLIST."
+
+(documentation 'simplify-coeff 'function)
+"Remove varpowers with coefficient 0 from VARLIST."
+
+(documentation 'as-polynomial 'function)
+"Return the corresponding sorted polynomial of the given EXPRESSION
+ EXPRESSION can be:
+ a parsed polynomial (poly monoList)
+ a parsed monomial (m C TD V)
+ an unparsed expression"
+
+(documentation 'parse-polynomial 'function)
+"Return the corresponding polynomial of the given EXPRESSION
+ EXPRESSION can be:
+ an unparsed polynomial (+ listMono*)
+ an unparsed monomial (* [coefficient] varpowers*)
+ a number"
+
+(documentation 'sort-poly 'function)
+"Return MONOS grlex sorted."
+
+(documentation 'mono-to-string 'function)
+"Return the string representation of MONO varpowers
+ the string representation is Sym|ExpSym|Exp..."
+
+(documentation 'to-string 'function)
+"Same as mono-to-string but S is a varpower list."
+
+(documentation 'degree-split 'function)
+"Return MONOLIST split by degree
+ MONOLIST must be grade sorted"
+
+(documentation 'simplify 'function)
+"Simplify a list of monomials MONOS."
+
+(documentation 'sum 'function)
+"Sum a list of monomials MONOS."
+
+(documentation 'sum-monomials 'function)
+"Sum two by two the elements of the monomial list MONOS."
+
+(documentation 'negate 'function)
+"Return the list of monomials of POLY but with negate coefficients."
+
+(documentation 'pprint-polynomial 'function)
+"Print the graphical representation of the given POLYNOMIAL."
+
+(documentation 'pprint-mono 'function)
+"Print the graphical representation of the list of monomials LISTMONO."
+
+(documentation 'print-vars 'function)
+"Print the graphical representation of the list of varpowers VARS."
+
+(documentation 'print-coeff 'function)
+"Print the graphical representation of the coefficient of MONO
+ MONO is a parsed monomial"
+
+(documentation 'print-sign 'function)
+"Print the sign of a given parsed monomial MONO."
+
+(documentation 'varpowers 'function)
+"Return the list of varpowers of MONOMIAL
+ MONOMIAL must be a parsed monomial"
+
+(documentation 'get-vars 'function)
+"Return the list of varpowers symbol that appears in VARS
+ VARS must be a varpowers list"
+
+(documentation 'vars-of 'function)
+"Same as get-vars but the input MONOMIAL is a parsed monomial."
+
+(documentation 'monomial-degree 'function)
+"Return the total degree of the given MONOMIAL
+ MONOMIAL must be a parsed monomial"
+
+(documentation 'monomial-coefficient 'function)
+"Return the coefficient of the given MONOMIAL
+ MONOMIAL must be a parsed monomial"
+
+(documentation 'coefficients 'function)
+"Return the list of coefficients that appears in the given POLYNOMIAL
+ POLYNOMIAL can be already parsed or unparsed"
+
+(documentation 'variables 'function)
+"Return the list of variables lex sorted that appears in POLYNOMIAL."
+
+(documentation 'get-varsym 'function)
+"Return the list of varpowers symbols that appear in VARS
+ VARS must be a list of parsed variables"
+
+(documentation 'monomials 'function)
+"Return the list of monomials of the given POLYNOMIAL."
+
+(documentation 'maxdegree 'function)
+"Return the maximum degree of the given POLYNOMIAL."
+
+(documentation 'mindegree 'function)
+"Return the minimum degree of the given POLYNOMIAL."

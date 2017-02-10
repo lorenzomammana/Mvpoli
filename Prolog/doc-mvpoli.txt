@@ -1,0 +1,282 @@
+%%% -*- Mode: Prolog -*-
+
+%%% 807391 Mammana Lorenzo
+
+%%% doc-mvpoli.pl
+
+
+%%	is_monomial(M)
+%	true if M is a monomial
+
+%%	is_varpower(V)
+%	true if v is a varpower
+
+%%	is_polynomial(P)
+%	true if P is a polynomial
+
+%%	coefficients(P, R)
+%       true if R is a list of coeffients of P
+%	P can be a monomial, a polynomial already parsed or not
+%	parsed
+
+%%	apply_coeff(P, R)
+%	same as coefficients but P must be a parsed polynomial
+
+%%	get_coefficients(M, C)
+%	true when M is a list of monomials and C is a list of
+%	coefficients in M
+
+%%	merge_list(L, LR)
+%	true if L is a list of lists and LR is a list
+%	containing the elements of the lists of L
+
+%%	variables(P, V)
+%	true if V is a list of Variables that appear in P
+%	V must be sorted lexicographically
+%	P can be a monomial, a polynomial already parsed or not
+%	parsed
+
+%%	apply_variables(P, V)
+%	same as variables but P must be a parsed polynomial
+
+%%	get_mono_variables(M, V)
+%	true if M is a list of monomials and V is a list of
+%	variables that appear in M
+
+%%	get_vars_sym(V, S)
+%	true if V is a list of varpowers and S is a list
+%	of symbols that appear in V
+
+%%	maxdegree(P, M)
+%	true if M is the maximum degree of P
+%	P can be a monomial, a polynomial already parsed or not
+%	parsed
+
+%%	test_empty(L, R)
+%	R = L if L is not empty, R = [0] otherwise
+
+%%	apply_degree(P, D)
+%	true if D is a list of degrees that appear in P
+%	P must be a parsed polynomial
+
+%%	maxdegree(P, M)
+%	true if M is the minimum degree of P
+%	P can be a monomial, a polynomial already parsed or not
+%	parsed
+
+%%	get_degrees(M, D)
+%	true if M is a list of monomials and D is a list of degrees
+%	that appear in M
+
+%%	monomials(P, SM)
+%	true if SM is a list of grlex sorted monomials that appear in P
+%	P can be a monomial, a polynomial already parsed or not
+%	parsed
+
+%%	apply_monomials(P, SM)
+%	same as monomials but P must be a parsed polynomial
+
+%%	polyplus(P1, P2, R)
+%	true if R is the result sorted grlex of P1 + P2
+%	P(1|2) can be a monomial, a polynomial already parsed or
+%	not parsed
+
+%%	sum(P1, P2, R)
+%	true if R equals monomials(P3)
+%	where P3 is P1 + P2
+%	P1 and P2 must be parsed polynomials
+
+%%	sum_monomials(M, R)
+%	true if R is a list of monomials equal to the sum of
+%	the monomials in M
+%	M must be grlex sorted
+
+%%	polyminus(P1, P2, R)
+%	true if R is the result grlex sorted of P1 - P2
+%	P(1|2) can be a monomial, a polynomial already parsed or
+%	not parsed
+
+%%	diff(P1, P2, R)
+%	true if R equals monomials(P3)
+%	where P3 is P1 - P2
+%	P1 and P2 must be parsed polynomials
+
+%%	negatelist(L, NL)
+%	true if L is a list of monomials and
+%	NL is the same list but with negate coefficients
+
+%%	test_mono(P, M)
+%	M is the list of monomials in the polynomial
+%	if the polynomial has no monomials M is m(0, 0, [])
+
+%%	as_monomial(Exp, Mono)
+%	parse a given expression into the corresponding monomial
+%	representation
+%	Exp must be an unparsed monomial
+%	Mono variables are lex sorted
+
+%%	test_null(M1, M2)
+%	M2 = M1 if the coefficients of M1 is not 0
+%	M2 = m(0, 0, []) otherwise
+
+
+%%	sort_monomials(M, SM)
+%	true if M is a list of monomials and SM
+%	is the grlex sorted list of M
+
+%%	as_polynomial(Exp, Poly)
+%	parse the expression Exp into the corresponding
+%	polynomial representation
+%	Exp can be a parsed monomial, a parsed polynomial or an
+%	unparsed expression
+
+%%	simplify_coeff(M, SM)
+%	true if M is a list of monomials and SM
+%	is the same list without monomials with coefficients 0
+
+%%	simplify_exp(M, SM)
+%	true if M is a list of monomials and SM is the same list
+%	but variables with coefficients 0 are removed
+
+%%	check_exp(V, CV)
+%	true if V is a list of variables and CV is the same
+%	list but without variables with coefficient 0
+
+%%	extract_monomials(Exp, M)
+%	parse an expression into the corresponding list of monomials
+
+%%	negate(M, NM)
+%	true if M is a monomial and NM is the same monomial
+%	but with negate coefficient
+
+%%	extract_coefficient(Exp, C)
+%	C is the coefficient of the given unparsed monomial
+%       expression Exp
+
+%%	total_degree_calculator(V, TD)
+%	TD is the total degree of the variables in V
+
+%%	extract_vars(Exp, Vars)
+%	parse variables from the given monomial expression Exp into
+%	variables list Vars
+
+%%	sort_monomial(M, SM)
+%	SM is the lex sorted monomial M
+
+%%	sort_poly(M, P)
+%	true if M is a list of lex sorted monomials
+%	and P is the list of grlex sorted monomials in M
+
+%%	sort_maps(M, SM)
+%	true if M is a list of map(Mono, Varstring)
+%	and SM is the same list lex sorted on Varstring
+
+%%	extract_poly(M, L)
+%	true if M is a list of map(X, Y)
+%	and L is a list of all X in M
+
+%%	create_map(L, LM)
+%	true if L is a list of list of monomials and LM is a list of
+%	list of map(Mono, Varstring) where Mono is in L and Varstring is
+%	a string represention of Mono variables
+
+%%	extract_map(M, L)
+%	true if M is a list of monomials and L is a list of
+%	map(Mono, Varstring) where Mono is in L and Varstring
+%	is a string representation of Mono variables
+
+%%	create_var_string(V, Sv)
+%	V is a list of variables, Sv is a String obtained
+%	concatenating the StringVar representation of all variables
+%	a variable v(E, S) equals a String S|E
+
+%%	degree_split(M, DM)
+%	split a list of monomials M into a list of lists DM
+%	each list of DM contains all the monomials in M with the
+%	same degree
+
+%%	test_equal(M, TD, M2, S)
+%       S is a list of all monomials in M with total degree TD
+
+%%	pprint_polynomial(P)
+%	print the representation of the given P
+%	P can be a monomial, a parsed polynomial or an unparsed
+%	polynomial
+
+%%	apply_pprint_polynomial(P)
+%	same as pprint_polynomial but P must be a parsed polynomial
+
+%%	print_mono(M)
+%	print the parsed polynomial M
+
+%%	write_sign(C)
+%	print + if C > 0
+%	nothign otherwis
+
+%%	print_coeff(C)
+%	nothing if C = 1 ; -1
+%	print C otherwise
+
+%%	write_vars(V)
+%	print the representation of a list of vars
+
+%%	polyval(P, V, Val)
+%	true when Val contains P value into the
+%	n-dimensional point represented by V that contains
+%	a value for each variable in variables(P, Variables)
+
+%%	map_val(V, Vals, Map)
+%	true when Map is a list of map(Var, Val) where
+%       Var is the element in the same position of Val in V and Vals
+
+%%	evaluate(P, Map, V)
+%	V is the result of polyval
+
+%%	evaluate_mono(M, Map, V)
+%	V is the evaluation of a list of monomials
+%	based on map(Var, Val) values of Map
+
+%%	evaluate_var(V, Map, Val)
+%	Val is the evaluation of a list of vars based
+%	on map(Var, Val) values of Map
+
+%%	polytimes(P1, P2, R)
+%	true if R is the result grlex sorted of P1 * P2
+%	P(1|2) can be a monomial, a polynomial already parsed or
+%	not parsed
+
+%%	mul(P1, P2, R)
+%	R is the list of monomials of P3 where
+%	P3 = P1 * P2
+%	P1 and P2 must be parsed polynomials
+
+%%	mul_monos(M, M2, R)
+%	R is the result of Mul
+%	M and M2 are list of monomials
+
+%%	mul_mono(M, M2, R)
+%	multiply a single monomial M with a list of monomials M2
+%	R is the result of this multiplication
+
+%%	mul_var(V, RV)
+%	RV is the list of variables resulted from the
+%	multiplication of the variables that appear in V
+
+%%% end of file doc-mvpoli.pl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
